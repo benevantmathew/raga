@@ -11,12 +11,12 @@ def print_help():
     help function
     """
     help_message = """
-Usage: chitram [OPTIONS]
+Usage: raga [OPTIONS]
 
 A small package to compare the files between two project folders.
 
 Options:
-    --version, -v      Show the version of chitram and exit
+    --version, -v      Show the version of raga and exit
     --help, -h         Show this help message and exit
     --email, -e        Show email and exit
     --author, -a       Show author and exit

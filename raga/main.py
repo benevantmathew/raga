@@ -1,5 +1,5 @@
 """
-chitram/main.py
+raga/main.py
 
 
 Author: Benevant Mathew
@@ -9,12 +9,12 @@ Date: 2026-02-19
 import sys
 import os
 
-from chitram.gui.gui import PhotoViewerGUI
+from raga.gui.gui import PhotoViewerGUI
 
-from chitram.version import (
+from raga.version import (
     __version__,__email__,__release_date__,__author__
 )
-from chitram.help import print_help
+from raga.help import print_help
 
 # Main entry point
 def main():

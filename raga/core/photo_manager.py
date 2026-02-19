@@ -7,12 +7,12 @@ Date: 2026-02-16
 from PIL import Image
 from pillow_heif import register_heif_opener
 
-from chitram.basic_functions.trash import delete_to_trash
-from chitram.basic_functions.os_funs import (
+from raga.basic_functions.trash import delete_to_trash
+from raga.basic_functions.os_funs import (
     get_all_files, get_end_from_path, move, copy
 )
-from chitram.core.photo_module import get_image_files
-from chitram.gui.gui_functions import get_photo_file
+from raga.core.photo_module import get_image_files
+from raga.gui.gui_functions import get_photo_file
 
 # Register HEIF opener
 register_heif_opener()

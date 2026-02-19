@@ -1,11 +1,11 @@
-# Chitram
-A fast, distraction-free photo viewer.
+# Raga
+a minimal, elegant image viewer inspired by the art of melody.
 
 ---
 
 ## ✨ About
 
-Chitram is a minimalist photo viewer designed to stay out of your way.
+Raga is a minimalist photo viewer designed to stay out of your way.
 No clutter. No unnecessary controls. Just your images — fast and clear.
 
 It focuses on:
@@ -40,30 +40,30 @@ It focuses on:
 
 ## 📦 Installation
 
-Install Chitram using pip:
+Install Raga using pip:
 
 ```bash
-pip install chitram
+pip install raga
 ```
 
 ## 🖥️ Usage
 
-Launch Chitram:
+Launch Raga:
 
 ```bash
-chitram
+raga
 ````
 
 Open a specific directory:
 
 ```bash
-chitram /path/to/folder
+raga /path/to/folder
 ```
 
 Open a specific image file:
 
 ```bash
-chitram /path/to/image.jpg
+raga /path/to/image.jpg
 ```
 
 ---
@@ -73,34 +73,34 @@ chitram /path/to/image.jpg
 Show version:
 
 ```bash
-chitram --version
-chitram -v
+raga --version
+raga -v
 ```
 
 Show help:
 
 ```bash
-chitram --help
-chitram -h
+raga --help
+raga -h
 ```
 
 Show author:
 
 ```bash
-chitram --author
-chitram -a
+raga --author
+raga -a
 ```
 
 Show author email:
 
 ```bash
-chitram --email
-chitram -e
+raga --email
+raga -e
 ```
 
 Show release date:
 
 ```bash
-chitram --date
-chitram -d
+raga --date
+raga -d
 ```

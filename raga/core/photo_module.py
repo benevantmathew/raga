@@ -6,10 +6,10 @@ Date: 2025-12-16
 """
 
 from PIL import Image
-from chitram.basic_functions.os_funs import (
+from raga.basic_functions.os_funs import (
     cwdfiles, get_ext_files, get_ext, get_rootname, rename
 )
-from chitram.basic_functions.convert import (
+from raga.basic_functions.convert import (
     metric_convert
 )
 

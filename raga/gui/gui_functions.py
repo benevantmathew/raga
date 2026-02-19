@@ -6,8 +6,8 @@ Date: 2025-12-16
 """
 
 import os
-from chitram.core.photo_module import get_native_dpi
-from chitram.basic_functions.os_funs import get_previous_dir_from_path,get_end_from_path
+from raga.core.photo_module import get_native_dpi
+from raga.basic_functions.os_funs import get_previous_dir_from_path,get_end_from_path
 
 
 def get_dpi_text(image_file):

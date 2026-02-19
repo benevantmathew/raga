@@ -3,10 +3,10 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "chitram"
+name = "raga"
 dynamic = ["version"]
-description = "A simple Photo Viewer."
-readme = { file = "README.md", content-type = "text/markdown" }
+description = "A fast, distraction-free photo viewer."
+readme = { file = "LONG_DESCRIPTION.md", content-type = "text/markdown" }
 license = { text = "MIT" }
 authors = [
     { name = "Benevant Mathew", email = "benevantmathewv@gmail.com" }
@@ -29,19 +29,19 @@ classifiers = [
 ]
 
 [project.scripts]
-chitram = "chitram.main:main"
+raga = "raga.main:main"
 
 [tool.setuptools]
 include-package-data = true
 
 [tool.setuptools.packages.find]
-include = ["chitram", "chitram.*"]
+include = ["raga", "raga.*"]
 
 [tool.setuptools.package-data]
-"chitram" = ["config/extensions.json"]
+"raga" = ["config/extensions.json"]
 
 [tool.setuptools.dynamic]
-version = { attr = "chitram.version.__version__" }
+version = { attr = "raga.version.__version__" }
 
 [project.urls]
-Homepage = "https://github.com/benevantmathew/chitram"
+Homepage = "https://github.com/benevantmathew/raga"

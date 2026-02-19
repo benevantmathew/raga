@@ -27,7 +27,7 @@ __pycache__/
 PKGBUILD
 *.SRCINFO
 
-# Benevant's Scripts
+# custom locations
 setup
-pypi_setup
+pypi
 .vscode
