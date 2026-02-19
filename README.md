@@ -1,11 +1,11 @@
-# Raga
+# AuraView
 a minimal, elegant image viewer inspired by the art of melody.
 
 ---
 
 ## ✨ About
 
-Raga is a minimalist photo viewer designed to stay out of your way.
+AuraView is a minimalist photo viewer designed to stay out of your way.
 No clutter. No unnecessary controls. Just your images — fast and clear.
 
 It focuses on:
@@ -40,30 +40,30 @@ It focuses on:
 
 ## 📦 Installation
 
-Install Raga using pip:
+Install AuraView using pip:
 
 ```bash
-pip install raga
+pip install auraview
 ```
 
 ## 🖥️ Usage
 
-Launch Raga:
+Launch AuraView:
 
 ```bash
-raga
+auraview
 ````
 
 Open a specific directory:
 
 ```bash
-raga /path/to/folder
+auraview /path/to/folder
 ```
 
 Open a specific image file:
 
 ```bash
-raga /path/to/image.jpg
+auraview /path/to/image.jpg
 ```
 
 ---
@@ -73,34 +73,34 @@ raga /path/to/image.jpg
 Show version:
 
 ```bash
-raga --version
-raga -v
+auraview --version
+auraview -v
 ```
 
 Show help:
 
 ```bash
-raga --help
-raga -h
+auraview --help
+auraview -h
 ```
 
 Show author:
 
 ```bash
-raga --author
-raga -a
+auraview --author
+auraview -a
 ```
 
 Show author email:
 
 ```bash
-raga --email
-raga -e
+auraview --email
+auraview -e
 ```
 
 Show release date:
 
 ```bash
-raga --date
-raga -d
+auraview --date
+auraview -d
 ```

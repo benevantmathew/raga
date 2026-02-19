@@ -8,8 +8,8 @@ Date: 2025-12-16
 from PIL import ImageTk, Image
 from pillow_heif import register_heif_opener
 
-from raga.core.photo_module import create_image_obj,  get_image_files
-from raga.basic_functions.os_funs import get_all_files
+from auraview.core.photo_module import create_image_obj,  get_image_files
+from auraview.basic_functions.os_funs import get_all_files
 
 register_heif_opener()
 

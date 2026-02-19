@@ -10,9 +10,9 @@ import tkinter as tk
 from tkinter import filedialog
 from PIL import ImageTk, Image
 from pillow_heif import register_heif_opener
-from raga.gui.gui_functions import get_photo_file
-from raga.core.photo_module import create_image_obj,  get_image_files,get_pic_wh
-from raga.basic_functions.os_funs import (
+from auraview.gui.gui_functions import get_photo_file
+from auraview.core.photo_module import create_image_obj,  get_image_files,get_pic_wh
+from auraview.basic_functions.os_funs import (
     get_all_files, get_end_from_path, move, copy, get_file_size
 )
 register_heif_opener()
@@ -57,7 +57,7 @@ class PhotoViewerGUI:
         self.root = tk.Tk()
         self.root.update_idletasks()  # important under Wayland
 
-        self.root.title("Raga")
+        self.root.title("AuraView")
         self.root.resizable(True, True)
 
         self.folder_path = ''

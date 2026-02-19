@@ -1,5 +1,5 @@
 """
-raga/main.py
+auraview/main.py
 
 
 Author: Benevant Mathew
@@ -9,12 +9,12 @@ Date: 2026-02-19
 import sys
 import os
 
-from raga.gui.gui import PhotoViewerGUI
+from auraview.gui.gui import PhotoViewerGUI
 
-from raga.version import (
+from auraview.version import (
     __version__,__email__,__release_date__,__author__
 )
-from raga.help import print_help
+from auraview.help import print_help
 
 # Main entry point
 def main():

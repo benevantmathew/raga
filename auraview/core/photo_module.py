@@ -6,10 +6,10 @@ Date: 2025-12-16
 """
 
 from PIL import Image
-from raga.basic_functions.os_funs import (
+from auraview.basic_functions.os_funs import (
     cwdfiles, get_ext_files, get_ext, get_rootname, rename
 )
-from raga.basic_functions.convert import (
+from auraview.basic_functions.convert import (
     metric_convert
 )
 
