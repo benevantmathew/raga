@@ -15,8 +15,11 @@ requires-python = ">=3.7"
 
 dependencies = [
     "pandas",
+    "piexif",
     "pillow",
-    "pillow_heif"
+    "pillow_heif",
+    "send2trash",
+    "tkcalendar"
 ]
 
 classifiers = [
