@@ -65,13 +65,17 @@ def rename(file, new_name):
     os.rename(file, new_name)
     return print('rename completed')
 
-def cwdfiles(loc='.', full_path=True):
+import os
+
+def cwdfiles(loc='.', full_path=True, sort=True, reverse=False):
     """
     List files in a directory.
 
     :param loc: Directory path (default: current working directory)
     :param full_path: If True → return absolute paths
-                    If False → return filenames only
+                      If False → return filenames only
+    :param sort: If True → sort based on filename
+    :param reverse: If True → reverse sorting order
     :return: List of files
     """
     files = []
@@ -83,6 +87,10 @@ def cwdfiles(loc='.', full_path=True):
                 files.append(os.path.abspath(full))
             else:
                 files.append(item)
+
+    if sort:
+        # Sort based on filename (not full path)
+        files.sort(key=lambda x: os.path.basename(x), reverse=reverse)
 
     return files
 

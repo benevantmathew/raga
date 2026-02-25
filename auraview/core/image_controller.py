@@ -6,7 +6,7 @@ Date: 2026-02-21
 """
 import os
 
-from PIL import Image, UnidentifiedImageError
+from PIL import Image, UnidentifiedImageError, ImageOps
 from pillow_heif import register_heif_opener
 
 from auraview.basic_functions.trash import delete_to_trash
@@ -245,12 +245,34 @@ class ImageController:
         if not path:
             return
 
-        im = Image.open(path)
-        if direction == "left":
-            im = im.transpose(Image.ROTATE_90)
-        else:
-            im = im.transpose(Image.ROTATE_270)
-        im.save(path)
+        with Image.open(path) as im:
+            # Preserve metadata
+            exif = im.getexif()
+            icc_profile = im.info.get("icc_profile")
+
+            # Step 1: Normalize orientation automatically
+            im = ImageOps.exif_transpose(im)
+
+            # Step 2: Apply user rotation
+            if direction == "left":
+                im = im.rotate(90, expand=True)
+            elif direction == "right":
+                im = im.rotate(-90, expand=True)
+            else:
+                return
+
+            # Step 3: Reset orientation tag
+            if exif:
+                exif[274] = 1  # Orientation tag
+
+            # Step 4: Save safely
+            im.save(
+                path,
+                format=im.format,
+                exif=exif.tobytes() if exif else None,
+                icc_profile=icc_profile,
+                quality=95
+            )
 
     def delete_current(self):
         """

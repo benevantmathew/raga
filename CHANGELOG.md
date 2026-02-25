@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 0.6.0 24-02-2026
+- Kept metadata intact while rotate.
+- sort files in directory based on name.
 ## Version 0.5.0 23-02-2026
 - Bug on file input.
 ## Version 0.4.0 23-02-2026
@@ -9,7 +12,9 @@
 ## Version 0.2.0 23-02-2026
 - Added image counter
 - Added go to image index feature
-- added copy, move
+- added copy, move, Delete, Rotate
+- Update extension feature.
+- Datetime labels
 ## Version 0.1.0 - 19-02-2026
 - Initial release
 - Able to view photos.
