@@ -11,6 +11,7 @@ from tkcalendar import Calendar
 from PIL import ImageTk
 from pillow_heif import register_heif_opener
 
+from auraview.version import __version__
 from auraview.core.image_controller import ImageController
 
 # Register HEIF opener
@@ -25,8 +26,11 @@ class PhotoViewerGUI:
             files=None,
             loc='.'
         ):
+        print("GUI started", flush=True)
+        print(f"files = {files}", flush=True)
+        self.files = files
 
-        self.controller = ImageController(files, loc)
+        self.controller = ImageController(self.files, loc)
 
         self.img_obj = None
 
@@ -41,7 +45,7 @@ class PhotoViewerGUI:
 
         self.root.update_idletasks()  # important under Wayland
 
-        self.root.title("AuraView")
+        self.root.title(f"AuraView-{__version__}")
         self.root.resizable(True, True)
 
         self._create_widgets()
@@ -50,8 +54,14 @@ class PhotoViewerGUI:
         self.update_screen()
 
         self.root.bind("<Configure>", self._on_resize)
-        self.root.mainloop()
 
+    def run(self):
+        """
+        Docstring for run
+
+        :param self: Description
+        """
+        self.root.mainloop()
     # -------------------------------------------------
     # Window Resize Handling
     # -------------------------------------------------
@@ -71,6 +81,7 @@ class PhotoViewerGUI:
         self.width = event.width
         self.height = event.height
         self.display_height = self.height
+        print(f'files {self.files}', flush=True)
 
         # to rescale image dynamically:
         self.update_screen()

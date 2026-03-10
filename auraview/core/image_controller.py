@@ -31,7 +31,6 @@ class ImageController:
             files=None,
             loc='.'
         ):
-
         self.img_no = 0
         self.folder_path=''
         self.folder_quick_operation=''
@@ -47,7 +46,8 @@ class ImageController:
 
             if os.path.isfile(files):
                 loc = os.path.dirname(files)
-                all_files = get_image_files(cwdfiles(loc))
+                all_files = get_image_files(cwdfiles(loc,sort=False))
+                print(all_files)
 
                 self.files = all_files
 

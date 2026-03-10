@@ -55,6 +55,7 @@ def main():
     Docstring for main
     """
     args = parse_arguments()
+    print(f'args {args}')
 
     # --- Meta info flags ---
     if args.help:
@@ -92,11 +93,14 @@ def main():
     # --- Normal mode ---
     if args.path:
         if os.path.isdir(args.path):
-            PhotoViewerGUI(loc=args.path)
+            obj=PhotoViewerGUI(loc=args.path)
+            obj.run()
         else:
-            PhotoViewerGUI(files=args.path)
+            obj = PhotoViewerGUI(files=args.path)
+            obj.run()
     else:
-        PhotoViewerGUI()
+        obj = PhotoViewerGUI()
+        obj.run()
 
 
 if __name__ == "__main__":

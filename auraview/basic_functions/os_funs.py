@@ -67,7 +67,7 @@ def rename(file, new_name):
 
 import os
 
-def cwdfiles(loc='.', full_path=True, sort=True, reverse=False):
+def cwdfiles(loc='.', full_path=True, sort=False, reverse=False):
     """
     List files in a directory.
 
@@ -88,9 +88,9 @@ def cwdfiles(loc='.', full_path=True, sort=True, reverse=False):
             else:
                 files.append(item)
 
-    if sort:
+    # if sort:
         # Sort based on filename (not full path)
-        files.sort(key=lambda x: os.path.basename(x), reverse=reverse)
+        # files.sort(key=lambda x: os.path.basename(x), reverse=reverse)
 
     return files
 
