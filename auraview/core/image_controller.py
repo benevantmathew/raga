@@ -12,7 +12,7 @@ from pillow_heif import register_heif_opener
 
 from auraview.basic_functions.trash import delete_to_trash
 from auraview.basic_functions.os_funs import (
-    get_all_files, get_end_from_path, move, copy, get_file_size
+    get_end_from_path, move, copy, get_file_size
 )
 from auraview.basic_functions.time_funs import file_creation_time
 from auraview.core.photo_module import (
@@ -23,6 +23,12 @@ from auraview.core.photo_module import (
 
 # Register HEIF opener
 register_heif_opener()
+
+# default values
+ORIENT = 274
+# rotation maps
+ROTATE_RIGHT = {1: 6, 6: 3, 3: 8, 8: 1}
+ROTATE_LEFT  = {1: 8, 8: 3, 3: 6, 6: 1}
 
 class ImageController:
     """Handles photo-related operations."""
@@ -251,6 +257,8 @@ class ImageController:
     def rotate_current(self, direction):
         """
         Docstring for rotate_current
+        tag_based_rotate_current
+        no quality loss.
 
         :param self: Description
         :param direction: Description
@@ -260,33 +268,20 @@ class ImageController:
             return
 
         with Image.open(path) as im:
-            # Preserve metadata
             exif = im.getexif()
-            icc_profile = im.info.get("icc_profile")
 
-            # Step 1: Normalize orientation automatically
-            im = ImageOps.exif_transpose(im)
+            orientation = exif.get(ORIENT, 1)
 
-            # Step 2: Apply user rotation
-            if direction == "left":
-                im = im.rotate(90, expand=True)
-            elif direction == "right":
-                im = im.rotate(-90, expand=True)
+            if direction == "right":
+                new_orientation = ROTATE_RIGHT.get(orientation, 1)
+            elif direction == "left":
+                new_orientation = ROTATE_LEFT.get(orientation, 1)
             else:
                 return
 
-            # Step 3: Reset orientation tag
-            if exif:
-                exif[274] = 1  # Orientation tag
+            exif[ORIENT] = new_orientation
 
-            # Step 4: Save safely
-            im.save(
-                path,
-                format=im.format,
-                exif=exif.tobytes() if exif else None,
-                icc_profile=icc_profile,
-                quality=95
-            )
+            im.save(path, exif=exif.tobytes())
 
     def delete_current(self):
         """

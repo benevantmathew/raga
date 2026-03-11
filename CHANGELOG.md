@@ -1,9 +1,9 @@
 # Changelog
 
 ## Version 0.6.0 24-02-2026
-- Kept metadata intact while rotate.
-- natural sort files in directory.
-- transfer dev workflow to pure uv.
+- Natural sort feature added.
+- Transfer dev workflow to pure uv.
+- Rotate image based on exif tags to avoid pixel conversion.
 ## Version 0.5.0 23-02-2026
 - Bug on file input.
 ## Version 0.4.0 23-02-2026
