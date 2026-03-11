@@ -55,7 +55,6 @@ def main():
     Docstring for main
     """
     args = parse_arguments()
-    print(f'args {args}')
 
     # --- Meta info flags ---
     if args.help:

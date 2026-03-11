@@ -19,7 +19,8 @@ dependencies = [
     "pillow",
     "pillow_heif",
     "send2trash",
-    "tkcalendar"
+    "tkcalendar",
+    "natsort"
 ]
 
 classifiers = [

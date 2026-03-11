@@ -5,19 +5,20 @@ Author: Benevant Mathew
 Date: 2026-02-21
 """
 import os
+from natsort import natsorted
 
 from PIL import Image, UnidentifiedImageError, ImageOps
 from pillow_heif import register_heif_opener
 
 from auraview.basic_functions.trash import delete_to_trash
 from auraview.basic_functions.os_funs import (
-    get_all_files, get_end_from_path, move, copy, get_file_size, cwdfiles
+    get_all_files, get_end_from_path, move, copy, get_file_size
 )
 from auraview.basic_functions.time_funs import file_creation_time
 from auraview.core.photo_module import (
-    create_image_obj, get_image_files, get_pic_wh, update_datetime, correct_image_ext,
-    get_dpi_text, get_image_ext, get_photo_dir, image_datetime_original, image_datetime_digitized,
-    image_datetime
+    create_image_obj, get_pic_wh, update_datetime, correct_image_ext,
+    get_dpi_text, get_image_ext, get_photo_dir, image_datetime_original,
+    image_datetime_digitized,image_datetime
 )
 
 # Register HEIF opener
@@ -31,55 +32,56 @@ class ImageController:
             files=None,
             loc='.'
         ):
+        self.files = files
+        self.loc = loc
         self.img_no = 0
         self.folder_path=''
         self.folder_quick_operation=''
 
+        # defaults
+        self.image_ext = {".png", ".jpg", ".jpeg", ".heic"}
+
         # Normalize loc always
-        loc = os.path.abspath(os.path.expanduser(loc))
+        self.loc = os.path.abspath(os.path.expanduser(self.loc))
 
         # If a single file is passed
-        if isinstance(files, str):
+        if isinstance(self.files, str):
 
             # Normalize file path
-            files = os.path.abspath(os.path.expanduser(files))
+            self.files = os.path.abspath(os.path.expanduser(self.files))
 
-            if os.path.isfile(files):
-                loc = os.path.dirname(files)
-                all_files = get_image_files(cwdfiles(loc,sort=False))
-                print(all_files)
-
-                self.files = all_files
+            if os.path.isfile(self.files):
+                self.loc = os.path.dirname(self.files)
+                all_files = self._get_image_files(loc=self.loc)
 
                 # Set index to the clicked file
                 try:
-                    self.img_no = all_files.index(files)
+                    self.img_no = all_files.index(self.files)
                 except ValueError:
                     self.img_no = 0
-            else:
-                # fallback
-                self.files = get_image_files(get_all_files(loc))
+
+                self.files = all_files
 
         # If multiple files passed
-        elif isinstance(files, (list, tuple)):
+        elif isinstance(self.files, (list, tuple)):
             # Normalize every file
-            files = [
+            self.files = [
                 os.path.abspath(os.path.expanduser(f))
-                for f in files
+                for f in self.files
             ]
 
             # review if file exist
-            files = [
+            self.files = [
                 f
-                for f in files
+                for f in self.files
                 if os.path.exists(f)
             ]
 
-            self.files = get_image_files(files)
+            self.files = self._get_image_files(files=self.files)
 
         # If nothing passed
         else:
-            self.files = get_image_files(get_all_files(loc))
+            self.files = self._get_all_image_files(loc=self.loc)
 
     # ------------------------
     # Navigation
@@ -344,3 +346,72 @@ class ImageController:
         # If renamed → update internal list
         if new_path != path:
             self.files[self.img_no] = new_path
+    # -------------------------------------------------
+    # File Operations
+    # -------------------------------------------------
+    def _get_image_files(self, files=None, loc=None, full_path=True, reverse=False):
+        """
+        Return image files from a list or directory.
+
+        Parameters
+        ----------
+        files : list[str] | None
+            List of file paths or names
+        loc : str | None
+            Directory to scan if files is None
+        full_path : bool
+            Return absolute paths if True
+        reverse : bool
+            Reverse sorting order
+        """
+
+
+        # If files not provided, read directory
+        if files is None:
+            if loc is None:
+                raise ValueError("Either 'files' or 'loc' must be provided")
+
+            files = []
+            for entry in os.scandir(loc):
+                if entry.is_file():
+                    files.append(entry.path if full_path else entry.name)
+
+        # Filter image extensions
+        filtered = []
+        for f in files:
+            ext = os.path.splitext(f)[1].lower()
+            if ext in self.image_ext:
+                filtered.append(f)
+
+        # Natural sort
+        filtered = natsorted(filtered, key=lambda x: os.path.basename(x), reverse=reverse)
+
+        return filtered
+
+    def _get_all_image_files(self, loc, reverse=False):
+        """
+        Return all image files inside a directory and its subdirectories.
+
+        Parameters
+        ----------
+        loc : str
+            Root directory
+        reverse : bool
+            Reverse sorting order
+
+        Returns
+        -------
+        list[str]
+        """
+
+        out = []
+
+        for path, _, files in os.walk(loc):
+            for name in files:
+                ext = os.path.splitext(name)[1].lower()
+                if ext in self.image_ext:
+                    out.append(os.path.join(path, name))
+
+        out = natsorted(out, key=lambda x: os.path.basename(x), reverse=reverse)
+
+        return out

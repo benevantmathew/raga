@@ -2,7 +2,8 @@
 
 ## Version 0.6.0 24-02-2026
 - Kept metadata intact while rotate.
-- sort files in directory based on name.
+- natural sort files in directory.
+- transfer dev workflow to pure uv.
 ## Version 0.5.0 23-02-2026
 - Bug on file input.
 ## Version 0.4.0 23-02-2026

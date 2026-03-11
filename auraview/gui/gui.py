@@ -26,8 +26,6 @@ class PhotoViewerGUI:
             files=None,
             loc='.'
         ):
-        print("GUI started", flush=True)
-        print(f"files = {files}", flush=True)
         self.files = files
 
         self.controller = ImageController(self.files, loc)
@@ -81,7 +79,6 @@ class PhotoViewerGUI:
         self.width = event.width
         self.height = event.height
         self.display_height = self.height
-        print(f'files {self.files}', flush=True)
 
         # to rescale image dynamically:
         self.update_screen()

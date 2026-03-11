@@ -8,7 +8,7 @@ import os
 from PIL import Image
 import piexif
 from auraview.basic_functions.os_funs import (
-    cwdfiles, get_ext_files, get_ext, get_rootname, rename,
+    get_ext, get_rootname, rename,
     get_previous_dir_from_path,get_end_from_path
 )
 from auraview.basic_functions.convert import (
@@ -109,18 +109,6 @@ def get_image_ext(file):
     """
     img = Image.open(file)
     return img.format
-
-def get_image_files(files=None, loc=None):
-    """
-    Docstring for get_image_files
-
-    :param files: Description
-    :param loc: Description
-    """
-    if files == None:
-        files = cwdfiles(loc)
-    filtered = get_ext_files(['png', 'PNG', 'JPEG', 'jpeg', 'jpg', 'JPG', 'heic', 'HEIC'], files=files)
-    return filtered
 
 def correct_image_ext(file):
     """

@@ -11,41 +11,6 @@ import shutil
 import pandas as pd
 
 
-def get_ext_files(ext, loc=None, mode='current_folder', files='NA'):
-    """
-    Docstring for get_ext_files
-
-    :param ext: Description
-    :param loc: Description
-    :param mode: Description
-    :param files: Description
-    """
-    if loc==None:
-        loc=os.getcwd()
-    res = list()
-    if files == 'NA':
-        if mode == 'all':
-            files = get_all_files(loc)
-        else:
-            files = os.listdir(os.path.join(loc))
-    if isinstance(ext, list):
-        if isinstance(files, list):
-            for x in files:
-                if x.split('.')[-1].lower() in ext:
-                    res.append(x)
-        else:
-            if files.split('.')[-1].lower() in ext:
-                res.append(files)
-    else:
-        if isinstance(files, list):
-            for x in files:
-                if x.split('.')[-1] == ext:
-                    res.append(x)
-        else:
-            if files.split('.')[-1] == ext:
-                res.append(files)
-    return res
-
 def get_ext(file):
     """
     Docstring for get_ext
@@ -64,35 +29,6 @@ def rename(file, new_name):
     """
     os.rename(file, new_name)
     return print('rename completed')
-
-import os
-
-def cwdfiles(loc='.', full_path=True, sort=False, reverse=False):
-    """
-    List files in a directory.
-
-    :param loc: Directory path (default: current working directory)
-    :param full_path: If True → return absolute paths
-                      If False → return filenames only
-    :param sort: If True → sort based on filename
-    :param reverse: If True → reverse sorting order
-    :return: List of files
-    """
-    files = []
-
-    for item in os.listdir(loc):
-        full = os.path.join(loc, item)
-        if os.path.isfile(full):
-            if full_path:
-                files.append(os.path.abspath(full))
-            else:
-                files.append(item)
-
-    # if sort:
-        # Sort based on filename (not full path)
-        # files.sort(key=lambda x: os.path.basename(x), reverse=reverse)
-
-    return files
 
 def get_all_files(loc):
     """
